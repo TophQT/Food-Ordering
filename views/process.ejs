@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Processing Details</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to your CSS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        img {
+            border-radius: 5px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+        li img {
+            margin-right: 10px;
+        }
+        .delete-button {
+            background-color: #ff4d4d; /* Red background */
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .delete-button:hover {
+            background-color: #ff1a1a; /* Darker red on hover */
+        }
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+                width: 100%;
+            }
+            th {
+                display: none; /* Hide table headers */
+            }
+            tr {
+                margin-bottom: 15px; /* Space between rows */
+            }
+            td {
+                text-align: right;
+                position: relative;
+                padding-left: 50%; /* Space for pseudo-element */
+            }
+            td::before {
+                content: attr(data-label); /* Show header as label */
+                position: absolute;
+                left: 0;
+                width: 50%;
+                padding-left: 10px;
+                font-weight: bold;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Order Processing Details</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Note to Rider</th>
+                <th>Payment Method</th>
+                <th>Order Status</th>
+                <th>Product Details</th>
+                <th>Total Price</th> <!-- New column for total price -->
+                <th>Actions</th> <!-- New column for actions -->
+            </tr>
+        </thead>
+        <tbody>
+            <% orders.forEach(order => { %>
+                <tr>
+                    <td data-label="Name"><%= order.name %></td>
+                    <td data-label="Address"><%= order.address %></td>
+                    <td data-label="Phone Number"><%= order.phone %></td>
+                    <td data-label="Email"><%= order.email %></td>
+                    <td data-label="Note to Rider"><%= order.note ? order.note : 'N/A' %></td>
+                    <td data-label="Payment Method"><%= order.paymentMethod %></td>
+                    <td data-label="Order Status">
+                        <select name="status" class="status-dropdown" data-order-id="<%= order._id %>">
+                            <option value="Pending" <% if (order.status === 'Pending') { %> selected <% } %>>Pending</option>
+                            <option value="Processing" <% if (order.status === 'Processing') { %> selected <% } %>>Processing</option>
+                            <option value="On My Way" <% if (order.status === 'On My Way') { %> selected <% } %>>On My Way</option>
+                            <option value="Order Delivered" <% if (order.status === 'Order Delivered') { %> selected <% } %>>Order Delivered</option>
+                        </select>                    
+                    </td>
+                    <td data-label="Product Details">
+                        <ul>
+                            <% let totalPrice = 0; %> <!-- Initialize total price -->
+                            <% order.products.forEach(product => { %>
+                                <li>
+                                    <img src="<%= product.image %>" alt="<%= product.name %>" style="width:50px;height:50px;">
+                                    <strong><%= product.name %></strong> - Price: <%= product.price %> - Quantity: <%= product.quantity %>
+                                    <% totalPrice += product.price * product.quantity; %> <!-- Calculate total price -->
+                                </li>
+                            <% }) %>
+                            <li>
+                                <strong>Delivery Fee:</strong> ₱50.00 <!-- Fixed delivery fee -->
+                                <% totalPrice += 50; %> <!-- Add the delivery fee to total price -->
+                            </li>
+                        </ul>
+                    </td>
+                    <td data-label="Total Price"><strong>₱<%= totalPrice.toFixed(2) %></strong></td> <!-- Display total price with delivery fee -->
+                    <td data-label="Actions">
+                        <button class="delete-button" data-order-id="<%= order._id %>">Delete</button>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <script>
+        $(document).ready(function() {
+            $('.status-dropdown').change(function() {
+                var status = $(this).val();
+                var orderId = $(this).data('order-id');
+
+                $.ajax({
+                    url: '/api/update-status/' + orderId,
+                    type: 'POST',
+                    data: { status: status },
+                    success: function(response) {
+                        // Optionally, handle success feedback here (like showing a message)
+                        alert('Order status updated successfully!');
+                    },
+                    error: function(xhr, status, error) {
+                        // Optionally, handle error feedback here
+                        alert('Error updating order status: ' + error);
+                    }
+                });
+            });
+
+            $('.delete-button').click(function() {
+                var orderId = $(this).data('order-id');
+
+                if (confirm('Are you sure you want to delete this order?')) {
+                    $.ajax({
+                        url: '/api/delete-order/' + orderId,
+                        type: 'DELETE',
+                        success: function(response) {
+                            alert('Order deleted successfully!');
+                            location.reload(); // Reload the page to see changes
+                        },
+                        error: function(xhr, status, error) {
+                            alert('Error deleting order: ' + error);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

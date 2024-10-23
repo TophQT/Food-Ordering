@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Your App Name</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9; /* Light background for contrast */
+            color: #333; /* Default text color */
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .image-section {
+            flex: 1;
+            background: url('/images/pizza.jpg') no-repeat center center;
+            background-size: cover;
+        }
+
+        .form-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1); /* Added shadow for depth */
+        }
+
+        .form-box {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 15px;
+        }
+
+        .logo img {
+            width: 100px; /* Logo size */
+            height: auto;
+        }
+
+        .logo h2 {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            font-size: 28px; /* Font size for title */
+            font-weight: 600;
+        }
+
+        .tabs {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* Gap between tabs */
+        }
+
+        .tabs a {
+            padding: 12px 20px; /* Padding for tabs */
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 20px;
+            background-color: #e9ecef; /* Default background */
+            color: #333; /* Text color */
+            flex: 1; /* Equal space for tabs */
+            text-align: center; /* Center text */
+        }
+
+        .tabs a.active {
+            background: linear-gradient(to right, #00ADEF, #0066FF);
+            color: white; /* Active tab color */
+        }
+
+        .tabs a:hover {
+            background: #00ADEF; /* Hover color */
+            color: white; /* Hover text color */
+        }
+
+        .form-content {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px; /* Spacing for form groups */
+        }
+
+        .input-icon {
+            position: relative; /* For absolute positioning of the icon */
+            flex: 1; /* Take equal space */
+        }
+
+        .input-icon i {
+            position: absolute;
+            left: 10px; /* Positioning the icon inside the input */
+            top: 50%; /* Center vertically */
+            transform: translateY(-50%);
+            color: #000000; /* Light color for icons */
+        }
+
+        .input-icon input {
+            width: 100%; /* Full width for input */
+            padding: 12px 15px 12px 35px; /* Add padding for the icon */
+            border: 1px solid #ccc;
+            border-radius: 8px; /* Rounded corners */
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s; /* Transition for focus */
+        }
+
+        .input-icon input:focus {
+            border-color: #0066FF; /* Focus border color */
+            outline: none; /* Remove default outline */
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #00ADEF, #0066FF); /* Gradient button */
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer; /* Pointer on hover */
+            transition: background-color 0.3s ease;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        .footer {
+            text-align: center; /* Center footer text */
+            margin-top: 20px; /* Space above footer */
+        }
+
+        .footer a {
+            color: #00ADEF; /* Link color */
+            text-decoration: none; /* No underline */
+        }
+
+        .footer a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        .error-message {
+            color: red; /* Error message color */
+            font-size: 14px;
+            margin-top: 10px; /* Space above error message */
+        }
+
+        @media (max-width: 768px) {
+            .form-box {
+                max-width: 90%; /* Responsive width */
+            }
+
+            .tabs {
+                flex-direction: column; /* Stack tabs on smaller screens */
+            }
+
+            .tabs a {
+                margin-bottom: 5px; /* Space between stacked tabs */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-section"></div>
+        <div class="form-section">
+            <div class="form-box">  
+                <div class="tabs">
+                    <a href="/login" class="active">Sign In</a>
+                    <a href="/signup">Sign Up</a>
+                </div>
+
+                <div class="logo">
+                    <img src="/images/logo.jpg" alt="Logo"> <!-- Logo path -->
+                    <h2>Log In</h2>
+                </div>
+                <div class="form-content">
+                    <form method="POST" action="/login"> <!-- Action path -->
+                        <div class="form-group input-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group input-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" name="password" placeholder="Password" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Log In</button>
+                        </div>
+                    </form>
+                    <% if (message) { %>
+                        <p class="error-message"><%= message %></p>
+                    <% } %>
+                    <div class="footer">
+                        <p>Don't have an account? <a href="/signup">Sign up</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

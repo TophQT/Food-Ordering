@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+   *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+section{
+    width: 100%;
+    height: 100vh;
+}
+
+section nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    right: 0;
+    left: 0;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+section nav .logo img{
+    width: 90px;
+    height: 90px; 
+    cursor: pointer;
+    margin-left: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+}
+
+section nav ul{
+    list-style: none;
+    margin-left: 300px;
+}
+
+section nav ul li{
+    display: inline-block;
+    margin: 0 15px;
+}
+
+section nav ul li a{
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    font-size: 17px;
+    transition: 0.1s;
+}
+
+section nav ul li a::after{
+    content: '';
+    width: 0;
+    height: 2px;
+    background: #fac031;
+    display: block;
+    transition: 0.2s linear;
+}
+
+section nav ul li a:hover::after{
+    width: 100%;
+}
+
+section nav ul li a:hover{
+    color: #fac031;
+}
+
+section nav .icon i{
+    font-size: 18px;
+    color: #000;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+section nav .icon i:hover{
+    color: #fac031;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; 
+}
+
+.search-bar input[type="text"] {
+    padding: 5px;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    font-size: 16px;
+    width: 200px;
+    margin-right: 10px; 
+}
+
+.search-bar button {
+    padding: 5px;
+    margin-right: 5px;
+    background-color: #fac031;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #f8b500;
+}
+
+.search-bar button i {
+    font-size: 18px;
+}
+
+section .main{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    top: 150px;
+}
+
+section .main .main_text h1{
+    color: #000;
+    font-size: 55px;
+    position: relative;
+    top: -25px;
+    left: 5%;
+}
+
+section .main .main_text h1 span{
+    color: #facc22;
+    font-family: polo;
+}
+
+section .main .main_text p{
+    color: #000;
+    width: 650px;
+    position: relative;
+    top: 20px;
+    left: 5%;
+    line-height: 23px;
+    text-align: justify;
+}
+
+section .main .main_text .btn i{
+    margin-right: 8px;
+}
+
+section .main .main_text .btn{
+    color: #000;
+    text-decoration: none;
+    border: 2px solid #facc22;
+    padding: 10px 20px;
+    position: relative;
+    top: 100px;
+    left: 5%;
+    transition: 0.3s;
+}
+
+section .main .main_text .btn:hover{
+    color: #fff;
+}
+
+section .main .main_text .btn::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #facc22;
+    z-index: -1;
+    transition: 0.3s;
+}
+
+section .main .main_text .btn:hover::before{
+    top: unset;
+    width: 100%;
+    bottom: 0;
+}
+
+section .main .main_image img{
+    width: 600px;
+    height: 600px;
+    animation: animate 5s linear infinite;
+    border-radius: 50%;
+}
+
+
+/*About*/
+
+.about{
+    width: 100%;
+    height: 100vh;
+    padding: 10px 0 0 0;
+    background-image: url(image/about_bg.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.about .about_main{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.about .about_main .about_image img{
+    width: 750px;
+    border-radius: 80px;
+}
+
+.about .about_main .about_text h1{
+    font-size: 45px;
+    position: relative;
+    bottom: 40px;
+}
+
+.about .about_main .about_text h1 span{
+    color: #facc22;
+    margin-right: 15px;
+}
+
+.about .about_main .about_text h3{
+    position: relative;
+    bottom: 10px;
+    font-size: 25px;
+}
+
+.about .about_main .about_text p{
+    width: 650px;
+    text-align: justify;
+    line-height: 23px;
+    margin-top: 20px;
+}
+
+.about .about_main .about_text .about_services{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.about .about_main .about_text .about_services .s_1{
+    display: flex;
+    align-items: center;
+    width: 180px;
+    background: #ececec;
+    padding: 10px;
+    border: 2px solid #facc22;
+    cursor: pointer;
+}
+
+.about .about_main .about_text .about_services .s_1 i{
+    color: #000;
+    margin: 5px 10px 5px 5px;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.about .about_main .about_text .about_services .s_1:hover i{
+    color: #facc22;
+}
+
+.about .about_main .about_text .about_services .s_1 a{
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+}
+
+.about .about_main .about_text .about_btn i{
+    font-size: 15px;
+    margin-right: 8px;
+}
+
+.about .about_main .about_text .about_btn{
+    position: relative;
+    top: 35px;
+    padding: 10px 20px;
+    border: 2px solid #facc22;
+    text-decoration: none;
+    color: #000;
+    z-index: 5;
+    transition: 0.3s;
+}
+
+.about .about_main .about_text .about_btn:hover{
+    color: #fff;
+}
+
+.about .about_main .about_text .about_btn::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    z-index: -1;
+    background: #facc22;
+    transition: 0.3s;
+}
+
+.about .about_main .about_text .about_btn:hover::before{
+    top: unset;
+    width: 100%;
+    bottom: 0;
+}
+
+
+
+/*Menu*/
+
+.menu{
+    width: 100%;
+    height: 100vh;
+    padding: 75px 0;
+}
+
+.menu h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+    color: #000;
+}
+
+.menu h1 span{
+    color: #facc22;
+    margin-left: 15px;
+}
+
+.menu .menu_box{
+    width: 95%;
+    margin: 45px auto 0 auto;
+    display: grid;
+    grid-gap: 30px 10px;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.menu .menu_box .menu_card{
+    background-image: url(bg1.jpg);
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto;
+    width: 450px;
+    height: 575px;
+    text-align: center;
+    cursor: pointer;
+    padding: 20px 0;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+}
+
+.menu .menu_box .menu_card .menu_img{
+    margin: 0 auto;
+    width: 420px;
+    height: 300px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.7);
+}
+
+.menu .menu_box .menu_card .menu_img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.menu .menu_box .menu_card .menu_text h2{
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.menu .menu_box .menu_card .menu_text p{
+    line-height: 21px;
+    margin-bottom: 15px;
+    margin: 0 auto;
+    width: 400px;
+}
+
+.menu .menu_box .menu_card .menu_text .menu_icon{
+    color: #facc22;
+    margin: 8px 0;
+}
+
+.menu .menu_box .menu_card .menu_text .price{
+    font-weight: bold;
+    font-size: 20px;
+    padding: 8px 0;
+    margin-left: 45px;
+}
+
+.menu .menu_box .menu_card .menu_text .price sub{
+    margin-left: 5px;
+    color: #6d6a6a;
+    font-size: 13px;
+}
+
+.menu .menu_box .menu_card .menu_text .menu_btn{
+    color: #000;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 2px solid #facc22;
+    position: relative;
+    top: 20px;
+    z-index: 5;
+    transition: 0.3s;
+}
+
+.menu .menu_box .menu_card .menu_text .menu_btn:hover{
+    color: #fff;
+}
+
+.menu .menu_box .menu_card .menu_text .menu_btn::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #facc22;
+    z-index: -1;
+    transition: 0.3s;
+}
+
+.menu .menu_box .menu_card .menu_text .menu_btn:hover::before{
+    top: unset;
+    bottom: 0;
+    width: 100%;
+}
+
+.menu .menu_box .menu_card .menu_text .menu_btn i{
+    margin-right: 8px;
+}
+
+/*Banner*/
+
+.banner{
+    width: 100%;
+    height: 50vh;
+    margin: 10px 0;
+    background-image: url(IMG_1455.JPG);
+    background-size: cover;
+    background-position: center;
+}
+
+.banner h1{
+    font-family: P22Grenville;
+    color: #facc22;
+    font-size: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding-top: 25px;
+}
+
+.banner .banner_center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    margin: 0 auto;
+}
+.banner .banner_center h2{
+    font-size: 60px;
+    margin-right: 25px;
+    font-family: Norwester;
+    color: #fff;
+}
+
+.banner .banner_center h2 span{
+    margin-left: 45px;
+    font-size: 30px;
+    position: relative;
+    bottom: 15px;
+    font-family: Norwester;
+}
+
+.banner .banner_btn{
+    color: #fff;
+    border: 2px solid #facc22;
+    padding: 10px 20px;
+    text-decoration: none;
+    position: relative;
+    top: 10%;
+    left: 46%;
+    z-index: 5;
+}
+
+.banner .banner_btn i{
+    margin-right: 8px;
+}
+
+.banner .banner_btn::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #facc22;
+    transition: 0.3s;
+    z-index: -1;
+}
+
+.banner .banner_btn:hover::before{
+    width: 100%;
+    top: unset;
+    bottom: 0;
+}
+
+/*Gallary*/
+
+.gallery{
+    width: 100%;
+    padding: 35px 0 50px 0;
+}
+
+.gallery h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+}
+
+.gallery h1 span{
+    color: #facc22;
+    margin-left: 15px;
+}
+
+.gallery .gallery_box{
+    width: 95%;
+    margin: 50px auto 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.gallery .gallery_box .gallery_image{
+    width: 470px;
+    height: 350px;
+    margin: 0 auto;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+}
+
+.gallery .gallery_box .gallery_image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.gallery .gallery_box .gallery_image:hover img{
+    transform: scale(1.1);
+}
+
+
+
+/*Offer*/
+
+.offer{
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.offer .offer_box{
+    width: 95%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0 15px;
+    margin: 0 auto;
+}
+
+.offer .offer_box .offer_card_1{
+    width: 720px;
+    height: 470px;
+}
+
+.offer .offer_box .offer_card_1 .offer_img{
+    width: 720px;
+    height: 470px;
+}
+
+.offer .offer_box .offer_card_1 .offer_img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 80px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.offer .offer_box .offer_card_1 .offer_tag{
+    position: relative;
+    bottom: 400px;
+    color: #fff;
+    padding: 0 35px;
+}
+
+.offer .offer_box .offer_card_1 .offer_tag h2{
+    font-size: 45px;
+}
+
+.offer .offer_box .offer_card_1 .offer_tag h1{
+    font-family: QuillScript;
+    font-size: 60px;
+    color: #facc22;
+}
+
+.offer .offer_box .offer_card_1 .offer_tag p{
+    margin-top: 30px;
+    width: 200px;
+    text-align: justify;
+    line-height: 22px;
+}
+
+.offer .offer_box .offer_card_1 .offer_tag .offer_btn{
+    color: #fff;
+    border: 2px solid #facc22;
+    padding: 10px 20px;
+    text-decoration: none;
+    position: relative;
+    top: 30px;
+    z-index: 2;
+    transition: 0.3s;
+}
+
+.offer .offer_box .offer_card_1 .offer_tag .offer_btn::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #facc22;
+    width: 0;
+    height: 100%;
+    transition: 0.3s;
+    z-index: -1;
+}
+
+.offer .offer_box .offer_card_1 .offer_tag .offer_btn:hover::before{
+    width: 100%;
+}
+
+.offer .offer_box .offer_card_1 .offer_tag .offer_btn i{
+    margin-right: 8px;
+}
+
+.offer .offer_box .offer_card_2{
+    width: 720px;
+    height: 470px;
+}
+
+.offer .offer_box .offer_card_2 .offer_img{
+    width: 720px;
+    height: 470px;
+}
+
+.offer .offer_box .offer_card_2 .offer_img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 80px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.offer .offer_box .offer_card_2 .offer_tag{
+    position: relative;
+    bottom: 400px;
+    color: #fff;
+    padding: 0 35px;
+}
+
+.offer .offer_box .offer_card_2 .offer_tag h2{
+    font-size: 45px;
+}
+
+.offer .offer_box .offer_card_2 .offer_tag h1{
+    font-family: QuillScript;
+    font-size: 60px;
+    color: #facc22;
+}
+
+.offer .offer_box .offer_card_2 .offer_tag p{
+    margin-top: 30px;
+    width: 200px;
+    text-align: justify;
+    line-height: 22px;
+}
+
+.offer .offer_box .offer_card_2 .offer_tag .offer_btn{
+    color: #fff;
+    border: 2px solid #facc22;
+    padding: 10px 20px;
+    text-decoration: none;
+    position: relative;
+    top: 30px;
+    z-index: 2;
+    transition: 0.3s;
+}
+
+.offer .offer_box .offer_card_2 .offer_tag .offer_btn::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #facc22;
+    width: 0;
+    height: 100%;
+    transition: 0.3s;
+    z-index: -1;
+}
+
+.offer .offer_box .offer_card_2 .offer_tag .offer_btn:hover::before{
+    width: 100%;
+}
+
+.offer .offer_box .offer_card_2 .offer_tag .offer_btn i{
+    margin-right: 8px;
+}
+
+/*Order*/
+
+.order{
+    width: 100%;
+    height: 100vh;
+    padding: 70px 0;
+    background-image: url(bg2.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.order h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-size: 55px;
+}
+
+.order h1 span{
+    color: #fac031;
+    margin-right: 15px;
+    font-family: mv boli;
+}
+
+.order h1 span::after{
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #fac031;
+    display: block;
+    position: relative;
+    bottom: 15px;
+}
+
+.order .order_main{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.order .order_main .order_image img{
+    width: 600px;
+}
+
+.order .order_main form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0 10px;
+}
+
+.order .order_main form .input p{
+    line-height: 25px;
+}
+
+.order .order_main form .input{
+    margin: 5px;
+}
+
+.order .order_main form .input input{
+    width: 300px;
+    height: 35px;
+    padding: 0 10px;
+    border: 2px solid #cccccc;
+    background: #eeeeee;
+    outline: none;
+    border-radius: 3px;
+}
+
+.order .order_main form .input input:focus{
+    border: 2px solid #fac031;
+}
+
+.order .order_main form .order_btn{
+    padding: 10px 0;
+    background: #fac031;
+    color: white;
+    width: 40%;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+}
+
+
+
+
+/*Team*/
+
+.team{
+    width: 100%;
+    height: 90vh;
+    background-image: url(bg1.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.team h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 55px;
+    margin-bottom: 30px;
+}
+
+.team h1 span{
+    color: #fac031;
+    margin-left: 15px;
+    font-family: mv boli;
+}
+
+.team h1 span::after{
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #fac031;
+    display: block;
+    position: relative;
+    bottom: 15px;
+}
+
+.team .team_box{
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 13%;
+}
+
+.team .team_box .profile{
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    margin: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 8px rgba(0,0,0,0.5);
+    transition: 0.4s;
+}
+
+.team .team_box .profile:hover{
+    border-radius: 20px;
+    height: 320px;
+}
+
+.team .team_box .profile img{
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(0,0,0,0.5);
+    z-index: 2;
+    transition: 0.4s;
+}
+
+.team .team_box .profile:hover img{
+    border-radius: 20px;
+    margin-top: -230px;
+}
+
+.team .team_box .profile .info{
+    position: absolute;
+    text-align: center;
+    top: 25%;
+    transition: 0.4s;
+}
+
+.team .team_box .profile:hover .info{
+    top: 60%;
+}
+
+.team .team_box .profile .info .name{
+    color: #fac031;
+    margin-bottom: 15px;
+}
+
+.team .team_box .profile .info .bio{
+    width: 70%;
+    text-align: center;
+    margin: 0 auto 10px auto;
+}
+
+.team .team_box .profile .info .team_icon i{
+    margin: 10px 5px 5px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.team .team_box .profile .info .team_icon i:hover{
+    color: #fac031;
+}
+
+
+
+/*Footer*/
+
+footer{
+    width: 100%;
+    padding: 30px 0 0 20px;
+    background: #eeeeee;
+}
+
+footer .footer_main{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+footer .footer_main .footer_tag{
+    text-align: center;
+}
+
+footer .footer_main .footer_tag h2{
+    color: #000;
+    margin-bottom: 25px;
+    font-size: 30px;
+}
+
+footer .footer_main .footer_tag p{
+    margin: 10px 0;
+}
+
+footer .footer_main .footer_tag i{
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+footer .footer_main .footer_tag i:hover{
+    color: #fac031;
+}
+
+footer .end{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+footer .end span{
+    color: #fac031;
+    margin-left: 10px;
+}
+
+::-webkit-scrollbar{
+    width: 13px;
+}
+
+::-webkit-scrollbar-track{
+    border-radius: 15px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+}
+
+::-webkit-scrollbar-thumb{
+    background: #fac031;
+    border-radius: 15px;
+} 
+</style>
+<body>
+
+    <section id="Home">
+        <nav>
+            <div class="logo">
+                <img src="/images/logo.jpg" alt="My Image">
+            </div>
+
+            <ul>
+                <li><a href="#Home">Home</a></li>
+                <li><a href="#About">About</a></li>
+                <li><a href="/menu">Menu</a></li>
+                <li><a href="gallery.php">Gallery</a></li>
+                <li><a href="#contact">Contact us</a></li>
+                <li><a href="#Dishes">Dishes</a></li>
+            </ul>
+
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search...">
+                <button id="searchButton"><i class="fas fa-search"></i></button>
+            <div class="icon">
+                <div class="search-icon">
+                <i class="fa-solid fa-heart"></i>
+                <i class="fa-solid fa-cart-shopping"></i>
+                <a href="/login"><i class="fa-solid fa-sign-out"></i></a>
+                <a href="/profile"><i class="fa-solid fa-user"></i></a>
+            </div>
+        </div>
+        </div>
+        </nav>
+
+        <div class="main anim">
+
+            <div class="main_text">
+
+                <h1>Welcome to<span> Road Trip Cafe and Resto</span><br>Get your Meal<span> In easy way</span></h1>
+
+                <a href="menu.html" class="btn"><i class="fa-solid fa-burger"></i>Order Now</a>
+
+            </div>
+
+            <div class="main_image">
+                <img src="/images/burger.png">
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!--About-->
+
+    <div class="about" id="About">
+
+        <div class="about_main">
+
+            <div class="about_image">
+                <img src="/images/back.jpg">
+            </div>
+
+            <div class="about_text">
+
+                <h1><span>About</span>Us</h1>
+                <h3>why food choose us?</h3>
+                <p>
+                    Welcome to Cab Baga, your ultimate dining destination situated in the charming town of San Leonardo, Nueva Ecija! At Cab Baga, we're renowned for our exceptional specialty dish, Wataw, which tantalizes taste buds with its diverse flavors and textures. Whether you prefer it savory, spicy, or somewhere in between, our Wataw offers a culinary experience like no other.
+But that's just the beginning of what we have to offer. At Cab Baga, we believe in providing our guests with an unmatched dining experience. That's why we proudly offer unlimited servings of gravy, rice, and soup with every meal, ensuring that you leave feeling fully satisfied and content.
+Our restaurant boasts a warm and welcoming atmosphere, perfect for gatherings with friends and family. Our attentive staff is dedicated to ensuring that your dining experience exceeds expectations, from the moment you walk through the door until the last bite of your meal.
+So why settle for ordinary when you can experience the extraordinary at Cab Baga? Join us for a culinary journey that celebrates the rich flavors of Filipino cuisine and the joy of abundance. Your table awaits at Cab Baga, where every meal is a feast for the senses and a celebration of good food and great company.
+                </p>
+
+                <div class="about_services">
+
+                    <div class="s_1">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <a href="#">Fast Delivery</a>
+                    </div>
+
+                    <div class="s_1">
+                        <i class="fa-brands fa-amazon-pay"></i>
+                        <a href="#">Easy Payment</a>
+                    </div>
+
+                </div>
+
+                <a href="menu.html" class="about_btn">
+                    <i class="fa-solid fa-burger"></i>Order Now
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!--Menu-->
+
+    <div class="menu">
+
+        <h1>Our<span>Menu</span></h1>
+
+        <div class="menu_box">
+
+            <div class="menu_card">
+
+                <div class="menu_img">
+                    <img src="IMG_1451.JPG">
+                </div>
+
+                <div class="menu_text">
+
+                    <h2>Liempo</h2>
+
+                    <div class="menu_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+
+                    <p class="price">100.00<sub><del>120.00</del></sub></p>
+
+                    <a href="menu.html" class="menu_btn"><i class="fa-solid fa-burger"></i>Order Now</a>
+
+                </div>
+
+            </div>
+
+            <div class="menu_card">
+
+                <div class="menu_img">
+                    <img src="IMG_1453.JPG">
+                </div>
+
+                <div class="menu_text">
+
+                    <h2>Letchon kawali</h2>
+
+                    <div class="menu_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+
+                    <p class="price">100.00<sub><del>120.00</del></sub></p>
+
+                    <a href="menu.html" class="menu_btn"><i class="fa-solid fa-burger"></i>Order Now</a>
+
+                </div>
+
+            </div>
+
+            <div class="menu_card">
+
+                <div class="menu_img">
+                    <img src="IMG_2104.JPG">
+                </div>
+
+                <div class="menu_text">
+
+                    <h2>Pork Chop</h2>
+
+                    <div class="menu_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+
+                    <p class="price">100.00<sub><del>120.00</del></sub></p>
+
+                    <a href="menu.html" class="menu_btn"><i class="fa-solid fa-burger"></i>Order Now</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--Banner-->
+
+    <div class="banner">
+
+        <h1>Special Offer</h1>
+
+        <div class="banner_center">
+            <h2>50%<br><span>Off</span></h2>
+        </div>
+
+        <a href="menu.html" class="banner_btn"><i class="fa-solid fa-burger"></i>Order Now</a>
+
+    </div>
+
+
+    <!--Gallary-->
+
+       <div class="gallery">
+
+        <h1>Popular<span>Gallery</span></h1>
+
+        <div class="gallery_box">
+
+            <div class="gallery_image">
+                <img src="gallary2.jpg">
+            </div>
+
+            <div class="gallery_image">
+                <img src="qwe.jfif">
+            </div>
+
+            <div class="gallery_image">
+                <img src="gallary3.jpg">
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!--Offer-->
+
+    <div class="offer">
+
+        <div class="offer_box">
+
+            <div class="offer_card_1">
+
+                <div class="offer_img">
+                    <img src="IMG_2134.JPG">
+                </div>
+
+                <div class="offer_tag">
+
+                    <h2>Triplae Food</h2>
+                    <h1>40%</h1>
+                    <a href="menu.html" class="offer_btn"><i class="fa-solid fa-burger"></i>Order Now</a>
+
+                </div>
+
+            </div>
+
+            <div class="offer_card_2">
+
+                <div class="offer_img">
+                    <img src="IMG_2141.JPG">
+                </div>
+
+                <div class="offer_tag">
+
+                    <h2>Buy 2 Meal and get a <br>free Drink</h2>
+                    <a href="menu.html" class="offer_btn"><i class="fa-solid fa-burger"></i>Order Now</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--Contact-->
+
+    <div class="order" id="contact">
+        <h1><span>Contact</span>Us</h1>
+
+        <div class="order_main">
+
+            <div class="order_image">
+                <img src="back.jpg">
+            </div>
+
+            <form action="#">
+
+                <div class="input">
+                    <p>Name</p>
+                    <input type="text" placeholder="you name">
+                </div>
+
+                <div class="input">
+                    <p>Email</p>
+                    <input type="email" placeholder="you email">
+                </div>
+
+                <div class="input">
+                    <p>Number</p>
+                    <input placeholder="you number">
+                </div>
+
+                <div class="input">
+                    <p>How Much</p>
+                    <input type="number" placeholder="how many order">
+                </div>
+
+                <div class="input">
+                    <p>You Order</p>
+                    <input placeholder="food name">
+                </div>
+
+                <div class="input">
+                    <p>Address</p>
+                    <input placeholder="you Address">
+                </div>
+
+                <a href="#" class="order_btn">Submit</a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!--Menu-->
+
+    <div class="team" id="Dishes">
+        <h1>Our Special<span>Dishes</span></h1>
+
+        <div class="team_box">
+            <div class="profile">
+                <img src="IMG_2134.JPG">
+
+                <div class="info">
+                    <h2 class="name">Wataw Meal</h2>
+
+                    <div class="menu_icon">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <a href="menu.html" class="offer_btn"><i class="fa-solid fa-burger"></i>Order Now</a>
+                </div>
+            </div>
+
+            <div class="profile">
+                <img src="IMG_2117.JPG">
+
+                <div class="info">
+                    <h2 class="name">Silog Meal</h2>
+
+                    <div class="menu_icon">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <a href="menu.html" class="offer_btn"><i class="fa-solid fa-burger"></i>Order Now</a>
+                </div>
+            </div>
+
+            <div class="profile">
+                <img src="IMG_1455.JPG">
+
+                <div class="info">
+                    <h2 class="name">Sizzling Meal</h2>
+
+                   <div class="menu_icon">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <a href="menu.html" class="offer_btn"><i class="fa-solid fa-burger"></i>Order Now</a>
+                </div>
+            </div>
+
+            <div class="profile">
+                <img src="IMG_2103.JPG">
+
+                <div class="info">
+                    <h2 class="name">Combo Meal</h2>
+
+                    <div class="menu_icon">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <a href="menu.html" class="menu_btn">Order Now</a>
+                </div>
+            </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!--Footer-->
+
+    <footer>
+        <div class="footer_main">
+
+            <div class="footer_tag">
+                <h2>Location</h2>
+                <p>San Leonardo</p>
+                <p>Nueva Ecija</p>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Quick Link</h2>
+                <p>Home</p>
+                <p>About</p>
+                <p>Menu</p>
+                <p>Gallery</p>
+                <p>Order</p>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Contact</h2>
+                <p>09782648501</p>
+                <p>09374816394</p>
+                <p>Cabbaga123@gmail.com</p>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Our Service</h2>
+                <p>Fast Delivery</p>
+                <p>Easy Payments</p>
+                <p>24 x 7 Service</p>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Follows</h2>
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-linkedin-in"></i>
+            </div>
+
+        </div>
+
+        <p class="end">Design by<span><i class="fa-solid fa-face-grin"></i> Mossing</span></p>
+
+    </footer>
+</body>
+</html>

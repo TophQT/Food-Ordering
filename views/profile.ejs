@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile | Your App Name</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .profile-card {
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            width: 400px;
+        }
+
+        .profile-card img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .profile-card h2 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        .profile-card p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer a {
+            color: #00ADEF;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-card">
+            <img src="<%= user.profilePicture %>" alt="Profile Picture"> <!-- Profile Picture -->
+            <h2><%= user.name %></h2> <!-- User Name -->
+            <p>Email: <%= user.email %></p> <!-- User Email -->
+            <p>Joined: <%= user.createdAt.toDateString() %></p> <!-- Join Date -->
+            <p>Bio: <%= user.bio || 'No bio available.' %></p> <!-- User Bio -->
+
+            <div class="footer">
+                <p><a href="/edit-profile">Edit Profile</a></p>
+                <p><a href="/logout">Logout</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

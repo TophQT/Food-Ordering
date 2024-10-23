@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup | Your App Name</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9; /* Light background for contrast */
+            color: #333; /* Default text color */
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .image-section {
+            flex: 1;
+            background: url('/images/burger.avif') no-repeat center center;
+            background-size: cover;
+            position: relative; /* For better positioning of elements */
+        }
+
+        .form-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1); /* Added shadow for depth */
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column; /* Stack logo and text vertically */
+            align-items: center; /* Center horizontally */
+            margin-bottom: 15px;
+        }
+
+        .logo img {
+            width: 100px; /* Increased logo size */
+            height: auto;
+        }
+
+        .logo h2 {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            font-size: 28px; /* Slightly larger font size */
+            font-weight: 600;
+            margin-top: -5px;
+            text-align: center; /* Center text */
+        }
+
+        .tabs {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* Added gap between tabs */
+        }
+
+        .tabs a {
+            padding: 12px 20px; /* Adjusted padding for a better click area */
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 20px;
+            background-color: #e9ecef;
+            color: #333;
+            flex: 1;
+            text-align: center; /* Center text in tab */
+        }
+
+        .tabs a.active {
+            background: linear-gradient(to right, #00ADEF, #0066FF);
+            color: white;
+        }
+
+        .tabs a:hover {
+            background: #00ADEF;
+            color: white;
+        }
+
+        .form-content {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px; /* Increased margin for better spacing */
+            display: flex; /* Flex display for horizontal alignment */
+            gap: 10px; /* Gap between input fields */
+            position: relative; /* Positioning context for absolute icons */
+        }
+
+        .input-icon {
+    position: relative; /* For absolute positioning of the icon */
+    flex: 1; /* Take equal space */
+}
+
+.input-icon i {
+    position: absolute;
+    left: 10px; /* Positioning the icon inside the input */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%);
+    color: #000000; /* Light color for icons */
+}
+
+.input-icon input {
+    width: 100%; /* Full width for input */
+    padding: 15px 15px 15px 35px; /* Add left padding for the icon */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition: border-color 0.3s; /* Smooth transition for focus */
+}
+
+.input-icon input:focus {
+    border-color: #0066FF; /* Highlight border on focus */
+    outline: none; /* Remove outline */
+}
+
+
+        .form-group button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #00ADEF, #0066FF);
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 10px; /* Space below the button */
+            transition: background-color 0.3s ease;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group input {
+            margin-right: 8px; 
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px; /* Space above footer */
+        }
+
+        .footer a {
+            color: #00ADEF;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px; 
+        }
+
+        .google-btn {
+            background-color: #ffffff; /* White background for contrast */
+            color: #555;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            height: 50px;
+            flex: 1; /* Take equal space */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px; /* Rounded corners */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .google-btn img {
+            width: 20px; /* Slightly larger Google icon */
+            margin-right: 10px;
+        }
+
+        .google-btn:hover {
+            background-color: #f0f0f0; /* Light gray on hover */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow on hover */
+        }
+
+        @media (max-width: 768px) {
+            .form-box {
+                max-width: 90%; /* Responsive width on smaller screens */
+            }
+
+            .tabs {
+                flex-direction: column; /* Stack tabs on small screens */
+            }
+
+            .tabs a {
+                margin-bottom: 5px; /* Space between stacked tabs */
+            }
+
+            .form-group {
+                flex-direction: column; /* Stack inputs vertically on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-section"></div>
+        <div class="form-section">
+            <div class="form-box">  
+                <div class="tabs">
+                    <a href="/login">Sign In</a>
+                    <a href="#" class="active">Sign Up</a>
+                </div>
+                <div class="logo">
+                    <img src="/images/logo.jpg" alt="Logo"> <!-- Change this to your logo path -->
+                    <h2>Create Account</h2>
+                </div>
+                <form method="POST" action="/signup"> <!-- Change the action path accordingly -->
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" name="firstName" placeholder="First Name" required>
+                        </div>
+                        <div class="input-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" name="lastName" placeholder="Last Name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="fas fa-phone"></i>
+                            <input type="text" name="phone" placeholder="Phone Number" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" name="email" placeholder="Email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" name="password" placeholder="Password" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+                        </div>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">I agree to the <a href="#">Terms and Privacy Policy</a></label>
+                    </div>
+                    <div class="form-group button-container">
+                        <button type="submit">Create Account</button>
+                    </div>
+                </form>
+                <% if (message) { %>
+                    <p class="error-message"><%= message %></p>
+                <% } %>
+                <div class="footer">
+                    <p>Already have an account? <a href="/login">Sign in</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

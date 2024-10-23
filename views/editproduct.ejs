@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f4f8, #d9e3f0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            background: linear-gradient(to right, #007bff, #28a745);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .form-container {
+            background-color: white;
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        form div {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        textarea:focus {
+            border-color: #007bff;
+            background-color: #fff;
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-actions button,
+        .form-actions a {
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .form-actions button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+        }
+
+        .form-actions button:hover {
+            background-color: #218838;
+            box-shadow: 0 6px 12px rgba(40, 167, 69, 0.3);
+        }
+
+        .form-actions a {
+            background-color: #ff0000;
+            color: white;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .form-actions a:hover {
+            background-color: #5a6268;
+            box-shadow: 0 6px 12px rgba(108, 117, 125, 0.3);
+        }
+
+        .alert {
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #dff0d8;
+            color: #3c763d;
+            border-radius: 8px;
+            font-size: 1.1rem;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 50px;
+            height: 50px;
+            background-color: #007bff;
+            border-radius: 50%;
+            box-shadow: 0 10px 20px rgba(0, 123, 255, 0.5);
+            z-index: -1;
+        }
+
+        .form-container::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: -10px;
+            width: 50px;
+            height: 50px;
+            background-color: #28a745;
+            border-radius: 50%;
+            box-shadow: 0 10px 20px rgba(40, 167, 69, 0.5);
+            z-index: -1;
+        }
+
+        @media (max-width: 600px) {
+            .form-actions {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h1>Edit Product</h1>
+        <form action="/update-product/<%= product._id %>" method="POST" enctype="multipart/form-data">
+            <div>
+                <label for="name">Product Name:</label>
+                <input type="text" id="name" name="name" value="<%= product.name %>" required>
+            </div>
+
+            <div>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required><%= product.description %></textarea>
+            </div>
+
+            <div>
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" value="<%= product.price %>" required>
+            </div>
+
+            <div>
+                <label for="image">Upload New Image (optional):</label>
+                <input type="file" id="image" name="image">
+                <input type="hidden" name="existingImage" value="<%= product.image %>"> <!-- Preserve existing image path -->
+            </div>
+
+            <div class="form-actions">
+                <button type="submit">Update Product</button>
+                <a href="/products">Cancel</a>
+            </div>
+        </form>
+        <% if (message.length > 0) { %>
+            <div class="alert"><%= message %></div>
+        <% } %>
+    </div>
+
+</body>
+</html>
